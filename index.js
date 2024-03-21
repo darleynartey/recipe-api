@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 import recipesRoutes from './routes/recipes.routes.js';
 
@@ -10,6 +11,10 @@ dotenv.config({path: ['.env.local']});
 //Create express app
 const app = express(); 
 
+//Apply middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: false}));
+app.use(cors());
 
 // Use the routes
 app.use(recipesRoutes);
@@ -18,7 +23,7 @@ app.use(recipesRoutes);
 await mongoose.connect(process.env.MONGO_URI);
 
 //Listen for incoming  requests
-app.listen(6000, () => {
+app.listen(4000, () => {
     console.log("Express app is running");
 });
 
