@@ -15,7 +15,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false}));
 app.use(cors());
-
+app.use(express.static('uploads'));
 // Use the routes
 app.use(recipesRoutes);
 
